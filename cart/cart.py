@@ -47,7 +47,10 @@ class Cart:
         else: #ItemAlreadyExists
             item.unit_price = unit_price
             item.quantity = item.quantity + int(quantity)
-            item.save()
+            if item.quantity <= 0:
+                self.remove(product)
+            else:
+                item.save()
 
     def remove(self, product):
         try:
